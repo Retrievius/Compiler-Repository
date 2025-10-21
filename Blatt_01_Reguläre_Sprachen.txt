@@ -1,0 +1,61 @@
+Blatt 01: Reguläre Sprachen
+
+    A1.1: Sprachen von regulären Ausdrücken
+    Welche Sprache wird von dem folgenden regulären Ausdruck beschrieben?
+
+    a + a(a + b)^∗ a
+
+        Lösung:
+        a oder a gefolgt von 0 bis unedlich a und b und zum schluss ein a
+        Beispiele:
+        a
+        aa
+        aaa
+        aba
+        ababa
+        wichtig!
+        Vorne und Hinten müssen immer a stehen
+
+A1.2: Bezeichner in Programmiersprachen
+
+    regulärer Ausdruck:
+    Variable: (V + v) (a-z + A-Z + 0-9 + _)^* (a-z + A-Z + 0-9)
+    Parameter: (P + p) (a-z + A-Z + 0-9 + _)^* (a-z + A-Z + 0-9)
+    Bezeichner: (a-z + A-Z) (a-z + A-Z + 0-9 + _)^* (a-z + A-Z + 0-9)
+    Zusammen: ((V + v) + (P + p) + (a-z + A-Z)) (a-z + A-Z + 0-9 + _)^* (a-z + A-Z + 0-9)
+
+    DFA:
+
+    Regex: ((Vv)+(Pp)+(a-zA-z))(a-zA-Z0-9_)^*(a-zA-Z0-9) 
+    Alphabet: {V,v,P,p,a-z,A-Z,0-9,_}
+    Zustände: 
+    Übergänge: 
+    Startzustand: q0 / (Vv), (Pp), (a-zA-z)
+    Endzustand: q3 / (a-zA-z0-9)
+
+    q0: (Vv), q1
+    q0: (Pp), q1
+    q0: (a-zA-z), q1
+    q1: (a-zA-Z0-9_), q2
+    q1: (a-zA-Z0-9), q3
+    q2: (a-zA-Z0-9), q3
+    q3: (a-zA-Z0-9_), q2
+    q3: (a-zA-Z0-9), q3
+
+    reguläre Grammatik:
+
+    Sprache: 
+    Nichtterminale: {S,A,B,C,D,E}
+    Terminale: {V,v,P,p,a-z,A-Z,0-9,_}
+    Startsymbol: S
+    Produktionen:
+    S → (Vv)A | (Pp)A | (a-zA-z)A
+    A → (a-zA-Z0-9_)A | (a-zA-Z0-9)
+
+A1.3: Gleitkommazahlen in Programmiersprachen
+
+A1.4: Mailadressen?
+
+A1.5: Der zweitletzte Buchstabe
+
+A1.6: Sprache einer regulären Grammatik
