@@ -1,0 +1,88 @@
+Blatt 02: CFG
+
+    A2.1: PDA
+    L = {w ∈ {a,b,c}^∗ | w hat doppelt so viele a’s wie c’s}
+
+        PDA:
+        Q = {q0,q1}
+        Σ = {a,b,c}
+        Γ = {A,C,#}
+        Startstack: #
+        Akzeptanz: leerer Stack (#)
+
+            δ(q0, a, #) = (q0, A)
+            δ(q0, a, A) = (q0, AA)
+            δ(q0, a, C) = (q1, #)
+            δ(q0, b, #) = (q1, #)
+            δ(q0, b, A) = (q0, A)
+            δ(q0, b, C) = (q0, C)    
+            δ(q0, c, #) = (q0, CC)
+            δ(q0, c, A) = (q0, C)
+            δ(q0, c, C) = (q0, CCC)
+            δ(q1, ε, #) = (q1, #)
+
+        bcaba:
+            b -> #
+            c -> CC#
+            a -> C#
+            b -> C#
+            a -> #
+        Stack ist leer -> wird Akzeptiert
+
+        bccac:
+            b -> #
+            c -> CC#
+            c -> CCCC#
+            a -> CCC#
+            c -> CCCCC#
+        Stack ist nicht leer -> wird nicht akzeptiert
+
+    A2.2: Akzeptierte Sprache
+        1. 
+        Der PDA ist nicht Deterministisch da (q3,d,A) mehrfach vorkommt und es somit mehrere mögliche
+        Übergänge gibt was nicht determinismus entspricht
+        2.
+        q0: Erzeugt A für a
+        q1: Wechselt bei b und erzeugt B
+        q2: Entfernt B bei c
+        q3: Entfernt A bei d
+        q4: Akzeptiert, wenn der Stack leer ist
+
+    A2.3: Kontextfreie Sprache
+        Die Grammatik erzeugt verschachtelte if else Statements und ist mehrdeutig da das else zum inneren
+        if und zum äußeren if gehören kann.
+
+    A2.4: Kontextfreie Grammatik
+    Kontextfreie Grammatik:
+        Nichtterminale: S, S1, S2, A, B, C
+        Terminals: a, b, c
+        Startsymbol: S
+        Produktionen:
+            S  -> S1 | S2
+            S1 -> A | C
+            A  -> a A b | ε
+            C  -> c C | ε
+            S2 -> D | B
+            D  -> a D | ε
+            B  -> b B c | ε 
+
+    Mehrdeutigkeit:
+        Es gilt i = j und j = k, also ist die Sprache mehrdeutig
+
+    PDA:
+    wählt zu Beginn zwischen M1 und M2
+
+        M1: prüft i = j
+        M2: prüft j = k
+
+            M1:
+            a -> push A
+            b -> pop A
+            c -> ignorieren
+
+            M2:
+            a -> ignorieren
+            b -> push B
+            c -> pop B
+
+    -> akzeptiere, wenn Stack leer ist.
