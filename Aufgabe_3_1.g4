@@ -1,41 +1,44 @@
 grammar Aufgabe_3_1;
 
 
+
 // Parser
-start : statement* EOF ;
+start : stmt* EOF ;
 
-statement    :  expression
-             |  while
-             |  ifelse
+stmt : expr
+     | var
+     | while
+     | ifelse
 ;
-expression  :
-            |  '(' expression ')'
-            | operator
-            | variable
-            |  BEZEICHNER
-            |  INTEGER
-            |  STRING
-operator :
-         |  operator '*' operator
-         |  operator '/' operator
-         |  operator '+' operator
-         |  operator '-' operator
-         |  operator '==' operator
-         |  operator '!=' operator
-         |  operator '>' operator
-         |  operator '<' operator
-         ;
 
-variable : BEZEICHNER (':=' expression)?;
+var : ID ;
 
-while : ID;
+while   :  'while' expr 'do'  stmt+  'end' ;
 
-ifelse : ID;
+ifelse : 'if' expr 'do'  stmt 'else do' stmt 'end' ;
+
+expr    :  expr '*' expr
+        |  expr '/' expr
+        |  expr '+' expr
+        |  expr '-' expr
+        |  expr '==' expr
+        |  expr '!=' expr
+        |  expr '>' expr
+        |  expr '<' expr
+        |  expr '>=' expr
+        |  expr '=<' expr
+        |  var ':=' expr
+        |  ID
+        |  NUMBER
+        |  STRING
+        |  '(' expr ')'
+;
 
 // Lexer
-BEZEICHNER      :  [a-zA-Z_][a-zA-Z0-9_]* ;
-INTEGER:  [0-9]+ ;
-STRING: ;
 
-KOMMENTAR :  '#' ~[\n\r]* -> skip ;
-WS      : [ \t\n]+ -> skip ;
+ID      :  [a-zA-Z_][a-zA-Z0-9_]* ;
+NUMBER  :  [0-9]+ ;
+STRING  :  '"' (~[\n\r"])* '"' ;
+
+KOMMENTAR       :  '#' ~[\n\r]* -> skip ;
+WS              :  [ \t\n]+ -> skip ;
