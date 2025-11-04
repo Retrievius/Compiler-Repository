@@ -44,6 +44,9 @@ tasks.named('run') {
 test {
     useJUnitPlatform()
 }
+git remote add origin https://github.com/Retrievius/Compiler-Repository
+git remote set-url origin https://github.com/Retrievius/Compiler-Repository.git
+
 
 spotless {
     java {
