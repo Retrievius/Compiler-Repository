@@ -1,8 +1,22 @@
+// Blatt 4:  Lexer und Parser selbst implementiert
+//
+// Aufgabe 1: Kontextfreie Grammatik
+// First-mengen: 
+// S -> (1, 3)
+// A -> (2, ϵ)
+// Follow-mengen: 
+// S -> ($)
+// A -> (1, 3, $)
+// LL(1) Beweis: 
+// (1) ∩ (3) = ∅
+// (2) ∩ (ϵ) = ∅
+// (ϵ) ∩ (1, 3, $)) = ∅
+// Grammatik ist LL(1) weil es keine Linksrekursion gibt, alle First mengen disjunkt sind und es keine Überschneidungen mit follow gibt.
+
+// Aufgabe 2: Grammatik
 import java.util.*;
 
-// =========================================
-// Hauptklasse – führt alles aus
-// =========================================
+
 public class Aufgabe4 {
     public static void main(String[] args) {
         String code = "(print (+ 1 2))";  // Beispielcode
@@ -287,3 +301,4 @@ class Parser {
         }
     }
 }
+
