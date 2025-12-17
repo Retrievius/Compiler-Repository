@@ -1,0 +1,31 @@
+{
+  "version": "0.2.0",
+  "configurations": [
+    
+    {
+      "type": "node",
+      "name": "Run Current File",
+      "request": "launch",
+      "program": "${workspaceFolder}\\Aufgabe 7\\A1\\main.cpp"
+    },
+    {
+      "name": "C/C++ Runner: Debug Session",
+      "type": "cppdbg",
+      "request": "launch",
+      "args": [],
+      "stopAtEntry": false,
+      "externalConsole": true,
+      "cwd": "e:/ablage/projects/git/Compilerbau/Compiler-Repository/Aufgabe 7/A1",
+      "program": "e:/ablage/projects/git/Compilerbau/Compiler-Repository/Aufgabe 7/A1/build/Debug/outDebug",
+      "MIMode": "gdb",
+      "miDebuggerPath": "gdb",
+      "setupCommands": [
+        {
+          "description": "Enable pretty-printing for gdb",
+          "text": "-enable-pretty-printing",
+          "ignoreFailures": true
+        }
+      ]
+    }
+  ]
+}
